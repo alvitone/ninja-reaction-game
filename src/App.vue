@@ -1,28 +1,41 @@
 <template>
- <h1>Reaction Time Game</h1>
- <button class="button-49" @click="start">play</button>
+  <div id="app">
+    <h1>Reaction Time Game</h1>
+    <button class="button-49" @click="start" v-bind:disabled="isPlaying">Play</button>
+    <ReactionBlock v-if="isPlaying" :delay="delay" @end="endGame" />
+    <GameResult :showResult="showResult" :output="output" />
+  </div>
 </template>
 
 <script>
-
+import GameResult from './components/GameResult.vue';
+import ReactionBlock from './components/ReactionGame.vue';
 
 export default {
   name: 'App',
-  components: {},
-  data(){
-    return{
-      isPlaying:false,
-      delay:null
-    }
+  components: { ReactionBlock, GameResult },
+  data() {
+    return {
+      isPlaying: false,
+      delay: null,
+      output: 0,
+      showResult: false,
+    };
   },
-  methods:{
-    start(){
-      this.delay=2000 + (Math.random()*5000)
-      this.isPlaying=true
-      console.log(this.delay)
-    }
-  }
-}
+  methods: {
+    start() {
+      this.delay = 2000 + Math.random() * 5000;
+      this.isPlaying = true;
+      this.showResult = false;
+    },
+    endGame(result) {
+      this.output = result;
+      this.isPlaying = false;
+      this.showResult = true;
+      console.log(this.output);
+    },
+  },
+};
 </script>
 
 <style>
@@ -34,9 +47,6 @@ export default {
   color: #444;
   margin-top: 60px;
 }
-
-
-
 
 /* CSS */
 .button-49,
@@ -65,7 +75,7 @@ export default {
   --slice-3: inset(10% -6px 85% 0);
   --slice-4: inset(40% -6px 43% 0);
   --slice-5: inset(80% -6px 5% 0);
-  
+
   content: 'ALTERNATE TEXT';
   display: block;
   position: absolute;
@@ -138,22 +148,4 @@ export default {
     line-height: 88px;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </style>
