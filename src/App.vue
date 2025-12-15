@@ -1,18 +1,21 @@
 <template>
   <div id="app">
     <h1>Reaction Time Game</h1>
-    <button class="button-49" @click="start" v-bind:disabled="isPlaying">Play</button>
+    <button class="button-49">New</button>
+    <button class="button-49" @click="start" v-bind:disabled="isPlaying">
+      Play
+    </button>
     <ReactionBlock v-if="isPlaying" :delay="delay" @end="endGame" />
     <GameResult :showResult="showResult" :output="output" />
   </div>
 </template>
 
 <script>
-import GameResult from './components/GameResult.vue';
-import ReactionBlock from './components/ReactionGame.vue';
+import GameResult from "./components/GameResult.vue";
+import ReactionBlock from "./components/ReactionGame.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: { ReactionBlock, GameResult },
   data() {
     return {
@@ -55,12 +58,12 @@ export default {
   height: 76px;
   line-height: 78px;
   font-size: 20px;
-  font-family: 'Bebas Neue', sans-serif;
-  background: linear-gradient(45deg, transparent 5%, #FF013C 5%);
+  font-family: "Bebas Neue", sans-serif;
+  background: linear-gradient(45deg, transparent 5%, #ff013c 5%);
   border: 0;
   color: #fff;
   letter-spacing: 3px;
-  box-shadow: 6px 0px 0px #00E6F6;
+  box-shadow: 6px 0px 0px #00e6f6;
   outline: transparent;
   position: relative;
   user-select: none;
@@ -76,15 +79,21 @@ export default {
   --slice-4: inset(40% -6px 43% 0);
   --slice-5: inset(80% -6px 5% 0);
 
-  content: 'ALTERNATE TEXT';
+  content: "ALTERNATE TEXT";
   display: block;
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(45deg, transparent 3%, #00E6F6 3%, #00E6F6 5%, #FF013C 5%);
-  text-shadow: -3px -3px 0px #F8F005, 3px 3px 0px #00E6F6;
+  background: linear-gradient(
+    45deg,
+    transparent 3%,
+    #00e6f6 3%,
+    #00e6f6 5%,
+    #ff013c 5%
+  );
+  text-shadow: -3px -3px 0px #f8f005, 3px 3px 0px #00e6f6;
   clip-path: var(--slice-0);
 }
 
